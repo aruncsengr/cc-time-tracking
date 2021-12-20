@@ -32,7 +32,7 @@ const UserOverview = props => {
           </p>
           <p>
             On average, how long did it take the user to submit a task?&nbsp;
-            <b>{user.statistics.average_duration_to_submit || 0}</b>
+            <b>{user.statistics.average_duration_to_submit || 0} {user.statistics.metric_unit}</b>
           </p>
           <p>
             How long is the user's average session?&nbsp;

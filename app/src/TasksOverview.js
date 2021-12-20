@@ -27,7 +27,7 @@ const TasksOverview = props => {
         <hr />
         <ul>
           {tasks.map(task => (
-            <li>
+            <li key={task.id}>
               <Link to={`/${task.id}`}>
                 {task.instructions}
               </Link>

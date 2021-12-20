@@ -9,13 +9,13 @@ class StatisticalService
 
   def task_statistics_specific
     collection = obj.task_sessions.submitted
-    compute_statistics(collection)
+    collection.empty? ? {} : compute_statistics(collection)
   end
 
   def task_statistics_overall
     collection = obj.task_sessions
     stats = compute_statistics(collection)
-    stats[:average_duration_to_submit] = collection.submitted.average(:duration)
+    stats[:average_duration_to_submit] = collection.submitted.average(:duration).round(2)
     stats
   end
 
@@ -37,7 +37,7 @@ class StatisticalService
 
     {
       total_duration: total_duration,
-      average_duration: average_duration,
+      average_duration: average_duration.round(2),
       session_count: session_count,
       metric_unit: METRIC_UNIT
     }
