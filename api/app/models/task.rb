@@ -6,7 +6,7 @@ class Task < ApplicationRecord
 
   validates :answer, presence: true, if: :submitted?
 
-  after_save :create_task_session
+  after_update :create_task_session
 
   scope :submitted, -> { where(submitted: true) }
 
