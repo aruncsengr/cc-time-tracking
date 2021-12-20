@@ -9,7 +9,8 @@ class TasksController < ApplicationController
     return render(json: { success: false, errors: 'Task not found' }) \
       if task.nil?
 
-    render json: { success: true, data: task }, status: 200
+    response_data = build_data_with_stats(task)
+    render json: { success: true, data: response_data }, status: 200
   end
 
   def update
@@ -23,11 +24,12 @@ class TasksController < ApplicationController
     end
 
     success = task.update(task_params)
+    response_data = build_data_with_stats(task)
     return render(
       json: {
         success: success,
         errors: task.errors,
-        data: task
+        data: response_data
       },
       status: success ? 200 : 422
     )
@@ -44,5 +46,11 @@ private
 
   def task_id
     params[:id]
+  end
+
+  def build_data_with_stats(task)
+    data = task.attributes
+    data[:statistics] = {}
+    data
   end
 end
