@@ -6,6 +6,8 @@ class TaskSession < ApplicationRecord
 
   before_save :set_duration
 
+  scope :submitted, -> { joins(:task).merge(Task.submitted) }
+
   private
 
   def set_duration
