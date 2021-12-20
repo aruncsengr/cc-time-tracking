@@ -40,7 +40,9 @@ private
   def task_params
     params.require(:task).permit(
       :submitted,
-      :answer
+      :answer,
+      :start_time,
+      :end_time
     )
   end
 
