@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def build_data_with_stats(user)
     data = task.attributes
-    data[:statistics] = {}
+    data[:statistics] = StatisticalService.new(user).task_statistics_overall
     data
   end
 end

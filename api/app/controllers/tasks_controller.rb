@@ -50,7 +50,7 @@ private
 
   def build_data_with_stats(task)
     data = task.attributes
-    data[:statistics] = {}
+    data[:statistics] = StatisticalService.new(task).task_statistics_specific
     data
   end
 end
